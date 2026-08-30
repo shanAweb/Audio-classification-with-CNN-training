@@ -8,9 +8,9 @@ image = (modal.Image.debian_slim(
 ).pip_install_from_requirements("requirements.txt").apt_install(["wget", "unzip", "ffmpeg", "libsndfile1"]).run_commands([
     "cd /tmp && wget https://github.com/karolpiczak/ESC-50/archive/master.zip -O esc50.zip",
     "cd /tmp && unzip esc50.zip",
-    "mkdir -p opt/esc50-data",
-    "cp -r /tmp/ESC-50-master/* /opt/esc-50-data/",
-    "rm -rf /temp/esc50.zip /tmp/ESC-50-master"
+    "mkdir -p /opt/esc50-data",
+    "cp -r /tmp/ESC-50-master/* /opt/esc50-data/",
+    "rm -rf /tmp/esc50.zip /tmp/ESC-50-master"
 ]).add_local_python_source("model"))
 
 volume = modal.Volume.from_name("esc50-data", create_if_missing=True)
