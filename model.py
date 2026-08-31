@@ -6,7 +6,7 @@ class ResidualBlock(nn.Module):
     def __init__(self, in_channel, out_channle, stride=1):
         super().__init__()
         self.conv1 = nn.Conv2d(
-            self, in_channel, out_channle, 3, stride=3, padding=1, bias=False)
+            in_channel, out_channle, 3, stride=3, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(out_channle)
         self.conv2 = nn.Conv2d(
             self, out_channle, out_channle, 3, padding=1, bias=False)
