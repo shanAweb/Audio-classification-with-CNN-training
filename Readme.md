@@ -294,4 +294,4 @@ This also nests runs neatly under one parent folder.
 
 The ESC-50 dataset is distributed under its own license — see the
 [ESC-50 repository](https://github.com/karolpiczak/ESC-50) for details.
-Add a license for your own code as appropriate.
+This respository is powered under MIT liscense
