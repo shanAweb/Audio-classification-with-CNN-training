@@ -122,7 +122,7 @@ def train():
         data_dir=esc50_dir, metadata_file=esc50_dir / "meta" / "esc50.csv", split="train", transform=train_transform)
 
     val_dataset = ESC50Dataset(
-        data_dir=esc50_dir, metadata_file=esc50_dir / "meta" / "esc50.csv", split="val", transform=val_transform)
+        data_dir=esc50_dir, metadata_file=esc50_dir / "meta" / "esc50.csv", split="test", transform=val_transform)
 
     print(f"Training Sample: {len(train_dataset)}")
     print(f"Validation Sample: {len(val_dataset)}")
@@ -191,7 +191,7 @@ def train():
             for data, target in test_dataloader:
                 data, target = data.to(device), target.to(device)
                 outputs = model(data)
-                loss = criterion(data)
+                loss = criterion(outputs, target)
                 val_loss += loss.item
 
                 _, predicted = torch.max(outputs.data, 1)
