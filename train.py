@@ -75,7 +75,7 @@ def mixup_data(x, y):
     batch_size = x.size(0)
     index = torch.randperm(batch_size).to(x.device)
 
-    mixed_x = lam * x + 1 (1 - lam) * x[index, :]
+    mixed_x = lam * x + (1 - lam) * x[index, :]
     y_a, y_b = y, y[index]
     return mixed_x, y_a, y_b, lam
 
@@ -192,7 +192,7 @@ def train():
                 data, target = data.to(device), target.to(device)
                 outputs = model(data)
                 loss = criterion(outputs, target)
-                val_loss += loss.item
+                val_loss += loss.item()
 
                 _, predicted = torch.max(outputs.data, 1)
                 total += target.size(0)

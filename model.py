@@ -6,10 +6,10 @@ class ResidualBlock(nn.Module):
     def __init__(self, in_channel, out_channle, stride=1):
         super().__init__()
         self.conv1 = nn.Conv2d(
-            in_channel, out_channle, 3, stride=3, padding=1, bias=False)
+            in_channel, out_channle, 3, stride=stride, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(out_channle)
         self.conv2 = nn.Conv2d(
-            self, out_channle, out_channle, 3, padding=1, bias=False)
+            out_channle, out_channle, 3, padding=1, bias=False)
         self.bn2 = nn.BatchNorm2d(out_channle)
         self.shortcut = nn.Sequential()
         self.use_shortcut = stride != 1 or in_channel != out_channle
@@ -50,9 +50,9 @@ class AudioCNN(nn.Module):
 
     def forward(self, x):
         x = self.conv1(x)
-        for block in self.layer2:
+        for block in self.layer1:
             x = block(x)
-        for block in self.layer3:
+        for block in self.layer2:
             x = block(x)
         for block in self.layer3:
             x = block(x)
